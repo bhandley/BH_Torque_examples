@@ -1,7 +1,6 @@
 name: Quali Troque env spin 
-
 on:
-  repository_dispatch:
+  workflow_dispatch:
     inputs:
       name:
         description: 'ssm name'
