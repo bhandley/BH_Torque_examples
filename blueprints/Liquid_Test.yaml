@@ -23,7 +23,5 @@ grains:
           - echo '{{ envId }}'
           - echo '{{ .inputs.bucket_name | downcase }}-{{ envId | downcase }}'
           - echo '{{ .inputs.bucket_name | downcase }}-{{ envId | downcase }}'
-          - echo '{% capture long_bucket_name \
-                    {{ .inputs.bucket_name | downcase }}-{{ envId | downcase }} \
-                  {% endcapture} \
-                  {{ long_bucket_name | truncate: 20 }}'
+          - echo '{% capture long_bucket_name {{ .inputs.bucket_name | downcase }}-{{ envId | downcase }} {% endcapture}' 
+          - echo '{{ long_bucket_name | truncate: 20 }}'
