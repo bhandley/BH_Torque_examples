@@ -1,36 +1,45 @@
-# This is a basic workflow to help you get started with Actions
+name: Quali Troque env spin 
 
-name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      name:
+        description: 'ssm name'
+        default: 'Martin Env'
+        required: true
+        type: string
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  spin-torque:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+    - name: Send greeting
+      run: echo "Hello ${{ inputs.name }}" | 
+           curl ---request POST \
+                --url https://portal.qtorque.io/api/spaces/space_name/environments \
+                --header 'Authorization: Bearer ${{ secrets.TORQUE_TOKEN }}' \
+                --header 'Content-Type: application/json' \
+                --data '{
+                          sandbox_name: "ssm-20230909T16081254",
+                          blueprint_name: "ssm", 
+                          owner_email: "avi.marcan@gmail.com",
+                          artifacts: {} ,
+                          automation: false,
+                          blueprint_name: "ssm",
+                          collaborators:{collaborators_emails: [], all_space_members: false},
+                          all_space_members: false,
+                          collaborators_emails: [],
+                          duration: "PT2H",
+                          inputs: {AWS_ACCESS_KEY: "{{ .params.SE_Candidate_AWS_ACCESS_KEY }}",
+                                   AWS_SECRET_KEY: "{{ .params.SE_Candidate_AWS_SECRET_KEY }}"}
+                          agent: "Quali",
+                          aws_region: "us-west-2",
+                          name: "test_martin2",
+                          value: "test_martin3",
+                          notes: "",
+                          owner_email: "avi.marcan@gmail.com",
+                          sandbox_name: "ssm-20230909T16081254",
+                          source: {is_editable: true, repository_name: "qtorque"},
+                          tags: {activity_type: "other"},
+                          workflows: []
+                          }'
