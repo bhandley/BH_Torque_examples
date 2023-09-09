@@ -20,3 +20,4 @@ grains:
         deploy:
           commands:
           - echo '{{ .inputs.bucket_name }}'
+          - echo '{{ .inputs.bucket_name | downcase }}-{{ envId | downcase }}'
