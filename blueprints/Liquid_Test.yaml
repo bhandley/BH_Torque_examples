@@ -15,7 +15,7 @@ grains:
     spec: 
       agent:
         name: '{{ .inputs.agent }}'
-
+s
       activities:
         deploy:
           commands:
@@ -23,6 +23,5 @@ grains:
           - echo '{{ envId }}'
           - echo '{{ .inputs.bucket_name | downcase }}-{{ envId | downcase }}'
           - echo '{{ .inputs.bucket_name | downcase }}-{{ envId | downcase }}'
-          - echo '{% assign long-bucket-name {{.inputs.bucket_name | downcase }}-{{ envId | downcase }} %}'          
+          - echo '{% assign long-bucket-name {{.inputs.bucket_name | downcase }}-{{ envId | downcase }} %} {{ long-bucket-name }}'          
           - echo '{{ .inputs.bucket_name | downcase }}-{{ envId | downcase }}' 
-          - echo '{{ long-bucket-name }}'
