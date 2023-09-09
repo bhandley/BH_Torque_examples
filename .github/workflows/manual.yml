@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: Manual workflow
+name: Quali Troque env spin 
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
@@ -10,9 +10,9 @@ on:
     inputs:
       name:
         # Friendly description to be shown in the UI instead of 'name'
-        description: 'Person to greet'
+        description: 'ssm name'
         # Default value if no value is explicitly provided
-        default: 'World'
+        default: 'Martin Env'
         # Input has to be provided for the workflow to run
         required: true
         # The data type of the input
@@ -21,12 +21,39 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "greet"
-  greet:
+  spin-torque:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Runs a single command using the runners shell
     - name: Send greeting
-      run: echo "Hello ${{ inputs.name }}"
+      run: echo "Hello ${{ inputs.name }}" 
+           curl ---request POST \
+                --url https://portal.qtorque.io/api/spaces/space_name/environments \
+                --header 'Authorization: Bearer ${{ secrets.TORQUE_TOKEN }}' \
+                --header 'Content-Type: application/json' \
+                --data '{
+                          sandbox_name: "ssm-20230909T16081254",
+                          blueprint_name: "ssm", 
+                          owner_email: "avi.marcan@gmail.com",
+                          artifacts: {} ,
+                          automation: false,
+                          blueprint_name: "ssm",
+                          collaborators:{collaborators_emails: [], all_space_members: false},
+                          all_space_members: false,
+                          collaborators_emails: [],
+                          duration: "PT2H",
+                          inputs: {AWS_ACCESS_KEY: "{{ .params.SE_Candidate_AWS_ACCESS_KEY }}",
+                                   AWS_SECRET_KEY: "{{ .params.SE_Candidate_AWS_SECRET_KEY }}"}
+                          agent: "Quali",
+                          aws_region: "us-west-2",
+                          name: "test_martin2",
+                          value: "test_martin3",
+                          notes: "",
+                          owner_email: "avi.marcan@gmail.com",
+                          sandbox_name: "ssm-20230909T16081254",
+                          source: {is_editable: true, repository_name: "qtorque"},
+                          tags: {activity_type: "other"},
+                          workflows: []
+                          }'
