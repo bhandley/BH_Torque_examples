@@ -20,4 +20,11 @@ grains:
         deploy:
           commands:
           - echo '{{ .inputs.bucket_name }}'
+          - echo '{{ envId }}'
           - echo '{{ .inputs.bucket_name | downcase }}-{{ envId | downcase }}'
+          - echo '{{ .inputs.bucket_name | downcase }}-{{ envId | downcase }}'
+          - echo '{% capture long_bucket_name \
+                    {{ .inputs.bucket_name | downcase }}-{{ envId | downcase }} \
+                  {% endcapture} \
+                  {{ long_bucket_name | truncate: 20 }}'
+                  '
