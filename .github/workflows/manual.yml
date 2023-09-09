@@ -28,7 +28,7 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Send greeting
-      run: echo "Hello ${{ inputs.name }}" 
+      run: echo "Hello ${{ inputs.name }}" | 
            curl ---request POST \
                 --url https://portal.qtorque.io/api/spaces/space_name/environments \
                 --header 'Authorization: Bearer ${{ secrets.TORQUE_TOKEN }}' \
