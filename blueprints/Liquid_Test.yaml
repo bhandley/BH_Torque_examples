@@ -27,4 +27,3 @@ grains:
                     {{ .inputs.bucket_name | downcase }}-{{ envId | downcase }} \
                   {% endcapture} \
                   {{ long_bucket_name | truncate: 20 }}'
-                  '
