@@ -25,4 +25,4 @@ grains:
           - echo '{{ .inputs.bucket_name | downcase }}-{{ envId | downcase }}'
           - echo '{% assign long-bucket-name {{.inputs.bucket_name | downcase }}-{{ envId | downcase }} %}'          
           - echo '{{ .inputs.bucket_name | downcase }}-{{ envId | downcase }}' 
-          - echo '{{ long_bucket_name }}'
+          - echo '{{ long-bucket-name }}'
