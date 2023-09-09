@@ -1,0 +1,22 @@
+spec_version: 2
+description: Simple shell grain for testing Liquid manipulation of inputs
+# blueprint inputs can be provided by the user, API or CI plugin when creating an environment from this blueprint.
+inputs:
+  bucket_name:
+    type: string
+    default: MyBucket-thisismylongbucketnameWITHCAPS
+  agent:
+    type: agent
+# blueprint outputs define which data that was generated during environment provisioning will be returned to the user, API or CI.
+outputs: {}
+grains:
+  setup-script:
+    kind: shell
+    spec: 
+      agent:
+        name: '{{ .inputs.agent }}'
+
+      activities:
+        deploy:
+          commands:
+          - echo '{{ .inputs.bucket_name }}'
