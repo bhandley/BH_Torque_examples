@@ -7,7 +7,7 @@ inputs:
     default: MyBucket-thisismylongbucketnameWITHCAPS
   agent:
     type: agent
-# blueprint outputs define which data that was generated during environment provisioning will be returned to the user, API or CI.
+# blueprint outputs define which  data that was generated during environment provisioning will be returned to the user, API or CI.
 outputs: {}
 grains:
   setup-script:
@@ -15,7 +15,6 @@ grains:
     spec: 
       agent:
         name: '{{ .inputs.agent }}'
-s
       activities:
         deploy:
           commands:
@@ -23,5 +22,5 @@ s
           - echo '{{ envId }}'
           - echo '{{ .inputs.bucket_name | downcase }}-{{ envId | downcase }}'
           - echo '{{ .inputs.bucket_name | downcase }}-{{ envId | downcase }}'
-          - echo '{% assign long-bucket-name {{.inputs.bucket_name | downcase }}-{{ envId | downcase }} %} {{ long-bucket-name }}'          
+          - echo '{{ {% assign long-bucket-name {{.inputs.bucket_name | downcase }}-{{ envId | downcase }} %} long-bucket-name }}'          
           - echo '{{ .inputs.bucket_name | downcase }}-{{ envId | downcase }}' 
