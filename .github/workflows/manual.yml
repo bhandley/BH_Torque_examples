@@ -37,23 +37,21 @@ jobs:
                           sandbox_name: "ssm-20230909T16081254", \
                           blueprint_name: "ssm", \
                           owner_email: "avi.marcan@gmail.com", \
-                          artifacts: {} , \
-                          automation: false, \
-                          blueprint_name: "ssm", \
                           collaborators:{collaborators_emails: [], all_space_members: false}, \
-                          all_space_members: false, \
-                          collaborators_emails: [], \
+                          source: {is_editable: true, repository_name: "qtorque"}, \
                           duration: "PT2H", \
+                          automation: false, \
                           inputs: {AWS_ACCESS_KEY: "{{ .params.SE_Candidate_AWS_ACCESS_KEY }}", \
                                     AWS_SECRET_KEY: "{{ .params.SE_Candidate_AWS_SECRET_KEY }}", \
                                     agent: "Quali", \ 
                                     aws_region: "us-west-2", \
                                     name: "test_martin2", \ 
-                                    value: "test_martin3"} \ 
-                          notes: "", \ 
-                          owner_email: "avi.marcan@gmail.com", \
-                          sandbox_name: "ssm-20230909T16081254", \
-                          source: {is_editable: true, repository_name: "qtorque"}, \
+                                    value: "test_martin3" \
+                                  } \ 
+                          artifacts: {} , \
+                          all_space_members: false, \
+                          collaborators_emails: [], \
+                          notes: "", \                          
                           tags: {activity_type: "other"}, \
                           workflows: [] \
                           }'
