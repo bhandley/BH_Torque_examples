@@ -30,7 +30,7 @@ jobs:
     - name: launch env
       run: | 
             curl --request POST \
-                --url https://portal.qtorque.io/api/spaces/space_name/environments \
+                --url https://portal.qtorque.io/api/spaces/SE-Candidate-Exercise-MM/environments \
                 --header 'Authorization: Bearer ${{ secrets.TORQUE_TOKEN }}' \
                 --header 'Content-Type: application/json' \
                 --data '{ \
@@ -45,11 +45,11 @@ jobs:
                           collaborators_emails: [], \
                           duration: "PT2H", \
                           inputs: {AWS_ACCESS_KEY: "{{ .params.SE_Candidate_AWS_ACCESS_KEY }}", \
-                                   AWS_SECRET_KEY: "{{ .params.SE_Candidate_AWS_SECRET_KEY }}"} \
-                          agent: "Quali", \ 
-                          aws_region: "us-west-2", \
-                          name: "test_martin2", \ 
-                          value: "test_martin3", \ 
+                                    AWS_SECRET_KEY: "{{ .params.SE_Candidate_AWS_SECRET_KEY }}", \
+                                    agent: "Quali", \ 
+                                    aws_region: "us-west-2", \
+                                    name: "test_martin2", \ 
+                                    value: "test_martin3"} \ 
                           notes: "", \ 
                           owner_email: "avi.marcan@gmail.com", \
                           sandbox_name: "ssm-20230909T16081254", \
