@@ -31,5 +31,5 @@ jobs:
     - name: Launch env
       run: echo "Hello ${{ inputs.name }}" \ 
     
-    -name: test
+    - name: test
       run: curl ifconfig.me
