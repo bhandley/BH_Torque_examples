@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: Manual workflow
+name: Quali Troque env spin 
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
@@ -29,4 +29,5 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Send greeting
-      run: echo "Hello ${{ inputs.name }}"
+      run: echo "Hello ${{ inputs.name }}" | \
+           echo "by"
