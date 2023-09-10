@@ -22,4 +22,4 @@ grains:
         deploy:
           commands:
             - echo 'Hello'
-            - echo '{{ "number of vCPUs to provision: " | append:.inputs.vcpus }}'
+            - echo '{{ "number of vCPUs to provision:" | append:.inputs.vcpus }}'
