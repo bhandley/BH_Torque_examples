@@ -7,7 +7,7 @@ on:
     inputs:
       name:
         description: 'ssm name'
-        default: 'Martin - X'
+        default: 'Martin - y'
         required: true
         type: string
 
