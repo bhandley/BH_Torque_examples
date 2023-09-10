@@ -9,17 +9,24 @@ inputs:
     type: agent
 # blueprint outputs define which  data that was generated during environment provisioning will be returned to the user, API or CI.
 outputs:
-  EnvironmentID:
-    value: '{{ envId }}'
+
+  test_lower_envid:
+    value: '{{ envid }}'
     quick: true
+  test_upper_envid:
+    value: '{{ envID }}'
+    quick: true
+  test_camel_envid:
+    value: '{{ envId }}'
+    quick: true    
   Working-concat:
-    value: '{{ .inputs.bucket_name | downcase }}-{{ envId | downcase }}'
+    value: '{{ .inputs.bucket_name | downcase }}-{{ envid | downcase }}'
     quick: true
   new-bucket-name:
-    value: '{{ .inputs.bucket_name | append: envId | downcase }}'
+    value: '{{ .inputs.bucket_name | append: envid | downcase }}'
     quick: true
   test_append1:
-    value: '{{ "Brian-" | append: envId | downcase }}'
+    value: '{{ "Brian-" | append: envid | downcase }}'
     quick: true  
   test_append2:
     value: '{{ "param1" | append: "can be param2" | truncate: 8, "" }}'
