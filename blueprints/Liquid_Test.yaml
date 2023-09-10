@@ -8,7 +8,10 @@ inputs:
   agent:
     type: agent
 # blueprint outputs define which  data that was generated during environment provisioning will be returned to the user, API or CI.
-outputs: {}
+outputs:
+  newbucket-name:
+    value: '{{ .inputs.bucket_name | append: "-" | append: envID | downcase | truncate: 30,"" }}'
+    quick: true
 grains:
   setup-script:
     kind: shell
@@ -19,4 +22,3 @@ grains:
         deploy:
           commands:
             - echo 'Hello'
-#          # - echo '{{ .inputs.bucket_name | append: "-" | append: envID | downcase | truncate: 30,"" }}'
