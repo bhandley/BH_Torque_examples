@@ -4,7 +4,7 @@ description: Simple shell grain for testing Liquid manipulation of inputs
 inputs:
   bucket_name:
     type: string
-    default: MyBucket
+    default: "BSHBucket"
   agent:
     type: agent
 # blueprint outputs define which  data that was generated during environment provisioning will be returned to the user, API or CI.
