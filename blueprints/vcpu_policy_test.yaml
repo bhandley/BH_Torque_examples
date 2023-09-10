@@ -1,0 +1,25 @@
+spec_version: 2
+description: Dummy shell grain for testing policy to limit number of requested vcpus
+# blueprint inputs can be provided by the user, API or CI plugin when creating an environment from this blueprint.
+inputs:
+  vcpus:
+    type: string
+    allowed-values: [1, 2, 4, 6, 8, 10, 12, 14, 16]
+    default: "4"
+    description: "The number of vCPUs to configure in the deployed VM"
+  agent:
+    type: agent
+# blueprint outputs define which  data that was generated during environment provisioning will be returned to the user, API or CI.
+outputs: {}
+
+grains:
+  setup-script:
+    kind: shell
+    spec: 
+      agent:
+        name: '{{ .inputs.agent }}'    
+      activities:
+        deploy:
+          commands:
+            - echo 'Hello'
+            - echo '{{ "number of vCPUs to provision:" | append: .inputs.vcpus }}'
