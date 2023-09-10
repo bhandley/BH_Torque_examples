@@ -41,3 +41,4 @@ grains:
         deploy:
           commands:
             - echo 'Hello'
+            - echo '{{ envId }}'
