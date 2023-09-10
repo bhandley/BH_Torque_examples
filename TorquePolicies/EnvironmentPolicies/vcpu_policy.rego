@@ -15,7 +15,7 @@ import future.keywords.if
 #
 
 result := { "decision": "Denied", "reason": "environment must have a value for vcpus" } if {
-    not input.inputs.vcpus
+    not input.inputs[name='vcpus'].value
 }
 
 result := {"decision": "Denied", "reason": "max_vcpus and needs_approval_vcpus have to be numbers."} if {
@@ -28,19 +28,19 @@ result := {"decision": "Denied", "reason": "max_vcpus and needs_approval_vcpus h
 #result = {"decision": "Denied", "reason": "requested number of vcpus exceeds maximum of"} if {
 result = {"decision": "Denied", "reason": sprintf("requested number of vcpus exceeds maximum of %d", [data.env_max_vcpus])} if {
     is_number(data.env_max_vcpus)
-	input.inputs.vcpus > data.env_max_vcpus
+	input.inputs[name='vcpus'].value > data.env_max_vcpus
 }
 
 result = {"decision": "Manual", "reason": "this number of vcpus requires approval"} if {
 	is_number(data.env_max_vcpus)
 	is_number(data.env_needs_approval_vcpus)
-	data.env_max_vcpus >= input.inputs.vcpus
-	data.env_needs_approval_vcpus <= input.inputs.vcpus
+	data.env_max_vcpus >= input.inputs[name='vcpus'].value
+	data.env_needs_approval_vcpus <= input.inputs[name='vcpus'].value
 }
 
 result = {"decision": "Approved"} if {
     is_number(data.env_max_vcpus)
 	is_number(data.env_needs_approval_vcpus)
-	data.env_max_vcpus >= input.inputs.vcpus
-	data.env_needs_approval_vcpus > input.inputs.vcpus
+	data.env_max_vcpus >= input.inputs[name='vcpus'].value
+	data.env_needs_approval_vcpus > input.inputs[name='vcpus'].value
 }
