@@ -18,6 +18,5 @@ grains:
       activities:
         deploy:
           commands:
-          - echo '{{ .inputs.bucket_name }}'
-          - echo '{{ envId }}'
-          - echo '{{ .inputs.bucket_name | append: "-" | append: envID | downcase | truncate: 30,"" }}'
+            - echo 'Hello'
+#          # - echo '{{ .inputs.bucket_name | append: "-" | append: envID | downcase | truncate: 30,"" }}'
