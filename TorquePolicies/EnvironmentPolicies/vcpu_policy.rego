@@ -16,7 +16,7 @@ import future.keywords.if
 #
 
 result := { "decision": "Denied", "reason": "environment must have a value for vcpus" } if {
-    not input.inputs[name='vcpus'].value
+    not input.inputs[name=='vcpus'].value
 }
 
 result := {"decision": "Denied", "reason": "max_vcpus and needs_approval_vcpus have to be numbers."} if {
