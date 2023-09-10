@@ -35,7 +35,7 @@ result = {"decision": "Manual", "reason": "this number of vcpus requires approva
 	is_number(data.env_max_vcpus)
 	is_number(data.env_needs_approval_vcpus)
 	data.env_max_vcpus >= input.inputs[0].value
-	data.env_needs_approval_vcpus <= input.inputs[name='vcpus'].value
+	data.env_needs_approval_vcpus <= input.inputs[0].value
 }
 
 result = {"decision": "Approved"} if {
