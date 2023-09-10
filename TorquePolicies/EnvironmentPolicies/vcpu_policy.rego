@@ -25,7 +25,7 @@ result := {"decision": "Denied", "reason": "max_vcpus and needs_approval_vcpus h
 	not is_number(data.env_needs_approval_vcpus)
 }
 
-result = {"decision": "Denied", "reason": "requested number of vcpus exceeds maximum of"} if {
+# result = {"decision": "Denied", "reason": "requested number of vcpus exceeds maximum of"} if {
 result = {"decision": "Denied", "reason": sprintf("requested number of vcpus exceeds maximum of %d", [data.env_max_vcpus])} if {
     is_number(data.env_max_vcpus)
 	input.inputs[0].value > data.env_max_vcpus
