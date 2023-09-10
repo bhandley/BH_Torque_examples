@@ -35,7 +35,8 @@ jobs:
       run: curl ifconfig.me
 
     - name: launch env
-      run: curl ---request POST \
+      run: | 
+            curl ---request POST \
                 --url https://portal.qtorque.io/api/spaces/space_name/environments \
                 --header 'Authorization: Bearer ${{ secrets.TORQUE_TOKEN }}' \
                 --header 'Content-Type: application/json' \
