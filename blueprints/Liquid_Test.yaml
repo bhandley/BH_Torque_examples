@@ -14,7 +14,7 @@ inputs:
 outputs:
 
   test_envid:
-    value: '{{ envId }}'
+    value: '{{ sandboxid }}'
     quick: true    
   Working-concat:
     value: '{{ .inputs.bucket_name | downcase }}-{{ envId }}'
