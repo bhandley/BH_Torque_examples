@@ -37,4 +37,4 @@ grains:
           commands:
             - echo 'Hello'
             - echo '{{ envId }}'
-            - echo '{{ .inputs.bucket_name | append:"-" | append:envId | downcase | truncate:63,"" }}'
+            - echo '{{ .inputs.bucket_name | append:"-" | append: envId | downcase | truncate:63,"" }}'
