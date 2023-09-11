@@ -1,32 +1,28 @@
 # This is a basic workflow that is manually triggered
 
-name: Manual workflow
+name: Quali Troque env launch 
 
-# Controls when the action will run. Workflow runs when manually triggered using the UI
-# or API.
 on:
   workflow_dispatch:
-    # Inputs the workflow accepts.
     inputs:
       name:
-        # Friendly description to be shown in the UI instead of 'name'
-        description: 'Person to greet'
-        # Default value if no value is explicitly provided
-        default: 'World'
-        # Input has to be provided for the workflow to run
+        description: 'ssm name'
+        default: 'Martin - x'
         required: true
-        # The data type of the input
         type: string
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "greet"
-  greet:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+jobs:
+  spin-env:
+    runs-on: ubuntu-latest
     steps:
-    # Runs a single command using the runners shell
-    - name: Send greeting
-      run: echo "Hello ${{ inputs.name }}"
+    - name: hello
+      run: echo "Hello ${{ inputs.name }}" \ 
+
+    - name: launch env
+      run: | 
+            curl --request POST \
+                --url https://portal.qtorque.io/api/spaces/SE-Candidate-Exercise-MM/environments \
+                --header 'Authorization: Bearer ${{ secrets.TORQUE_TOKEN }}' \
+                --header 'Content-Type: application/json' \
+                --data '{"sandbox_name": "${{ inputs.name }}", "blueprint_name": "ssm",  "owner_email": "avi.marcan@gmail.com",  "collaborators":{"collaborators_emails": [], "all_space_members": false},  "source": {"is_editable": true, "repository_name": "qtorque"},  "duration": "PT2H",  "automation": false,  "inputs": {"AWS_ACCESS_KEY": "{{ .params.SE_Candidate_AWS_ACCESS_KEY }}", "AWS_SECRET_KEY": "{{ .params.SE_Candidate_AWS_SECRET_KEY }}", "agent": "Quali", "aws_region": "us-west-2", "name": "test_martin2", "value": "test_martin3" } ,"artifacts": {} ,  "all_space_members": false,  "collaborators_emails": [],  "notes": "", "tags": {"activity_type": "other"},  "workflows": []}'
