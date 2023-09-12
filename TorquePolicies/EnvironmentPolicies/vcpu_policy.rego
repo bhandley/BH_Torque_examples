@@ -24,7 +24,7 @@ vcpus = value {
     obj = bp_inputs[i]
     #### Hardcoding the input name, this could be a data value instead
     obj.name == "vcpus"
-    value = obj.value
+    value = to_number(obj.value)
 }
 
 #### If this input name does not exist in the BP, approve it
