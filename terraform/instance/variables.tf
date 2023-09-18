@@ -6,7 +6,7 @@ variable "aws_region" {
 
 variable "sandboxID" {
   type    = string
-  default = "fonseca"
+  default = "demo"
 }
 
 variable "instance_type" {
