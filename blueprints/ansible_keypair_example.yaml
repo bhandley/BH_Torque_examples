@@ -4,7 +4,7 @@ description: Basic test of Ansible running on instance launched via Torque using
 inputs:
   ami:
     type: string
-    default: ami-01103fb68b3569475
+    default: ami-07bf0b6c50c039fd7
   aws_region:
     type: string
     default: us-east-2
@@ -19,10 +19,10 @@ inputs:
     default: sandbox
   sg:
     type: string
-    default: sg-0c39791d9732aac8b
+    default: sg-09a269af762df66cc
   subnet_id:
     type: string
-    default: subnet-0f83179771b62e7bf
+    default: subnet-003f457c7c146daba
   agent:
     type: agent
 outputs:
