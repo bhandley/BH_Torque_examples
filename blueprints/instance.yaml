@@ -18,10 +18,10 @@ inputs:
     default: fonseca
   sg:
     type: string
-    default: sg-09a269af762df66cc
+    default: sg-0e906aa739a2eb5d6
   subnet_id:
     type: string
-    default: subnet-003f457c7c146daba
+    default: subnet-0144daae4ce8222e1
   agent:
     type: agent
 outputs:
