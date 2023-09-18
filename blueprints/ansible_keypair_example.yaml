@@ -74,4 +74,4 @@ grains:
           vars:
             ansible_become: yes 
             ansible_become_method: sudo
-            ansible_become_pass: '{{params.ec2_instance_linux_pw}}'
+            ansible_become_pass: '{{ .params.ec2_instance_linux_pw }}'
