@@ -38,7 +38,7 @@ grains:
     kind: blueprint
     spec:
       source:
-        store: westrock
+        store: BH_Torque_examples
         path: blueprints
       inputs:
         - ami: '{{ .inputs.ami }}'
@@ -58,7 +58,7 @@ grains:
     kind: ansible
     spec:
       source:
-        store: westrock
+        store: BH_Torque_examples
         path: playbooks/connect_via_key.yaml
       agent:
         name: '{{ .inputs.agent }}'      
