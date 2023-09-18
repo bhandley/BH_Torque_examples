@@ -1,0 +1,46 @@
+---
+- name: "Ansible Test"
+  hosts: all
+  gather_facts: false
+  connection: ssh
+  tasks:
+
+  - name: Write key to file on runner
+    ansible.builtin.copy:
+      content: "{{ keydata }}"
+      dest: "/tmp/key.txt"
+    delegate_to: localhost
+
+  - name: Fix line endings to get valid pem file
+    shell: 
+      cmd: |
+          awk '{gsub(/\\n/,"\n")}1' /tmp/key.txt > /tmp/key.pem
+    delegate_to: localhost
+
+  - name: dump contents of the new key file
+    shell: "cat /tmp/key.pem"
+    register: keyfile_contents
+    delegate_to: localhost
+
+  - name: Show contents of the pem file
+    debug: var=keyfile_contents.stdout_lines
+
+  - name: check if .pem file is valid
+    shell: "openssl rsa -check -in /tmp/key.pem -noout"
+    register: rsa_check_result
+    delegate_to: localhost
+
+  - name: Show result of rsa check
+    debug: var=rsa_check_result.stdout_lines
+  
+  - name: fix pem file permissions
+    shell: "chmod 400 /tmp/key.pem"
+    delegate_to: localhost
+
+  - name: Install telnet as a simple example
+    become: yes
+    become_user: root
+    dnf:
+      state: present
+      name:
+        - telnet
