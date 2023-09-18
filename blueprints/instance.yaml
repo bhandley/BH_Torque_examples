@@ -3,25 +3,25 @@ description: Auto generated blueprint for terraform module instance
 inputs:
   ami:
     type: string
-    default: ami-08c236264cd61e36c
+    default: ami-07bf0b6c50c039fd7
   aws_region:
     type: string
     default: us-east-2
   instance_type:
     type: string
-    default: t3.large
+    default: t3.small
   key_name:
     type: string
-    default: ''
+    default: quali-demo
   sandboxID:
     type: string
     default: fonseca
   sg:
     type: string
-    default: sg-0facf2b447abcbdd7
+    default: sg-09a269af762df66cc
   subnet_id:
     type: string
-    default: subnet-0f83179771b62e7bf
+    default: subnet-003f457c7c146daba
   agent:
     type: agent
 outputs:
@@ -36,7 +36,7 @@ grains:
     kind: terraform
     spec:
       source:
-        store: westrock
+        store: BH_Torque_examples
         path: terraform/instance
       agent:
         # The Torque agent that will be used to provision the environment.
