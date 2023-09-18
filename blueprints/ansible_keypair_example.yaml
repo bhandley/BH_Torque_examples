@@ -4,16 +4,16 @@ description: Basic test of Ansible running on instance launched via Torque using
 inputs:
   ami:
     type: string
-    default: ami-08c236264cd61e36c
+    default: ami-01103fb68b3569475
   aws_region:
     type: string
     default: us-east-2
   instance_type:
     type: string
-    default: t3.large
+    default: t3.small
   key_name:
     type: string
-    default: bh-ansible
+    default: quali-demo
   sandboxID:
     type: string
     default: sandbox
@@ -63,7 +63,7 @@ grains:
       agent:
         name: '{{ .inputs.agent }}'      
       inputs:
-        - keydata: '{{ .params.bh-ansible-key }}'  
+        - keydata: '{{ .params.quali-demo-key }}'  
       inventory-file:
         all:
           hosts: 
