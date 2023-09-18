@@ -68,7 +68,7 @@ grains:
         all:
           hosts: 
            ec2:
-              ansible_host: '{{ .grains.instance.outputs.vm-dns }}'
+              ansible_host: '{{ .grains.instance.outputs.vm-ip }}'
               ansible_user: 'ec2-user'
               ansible_ssh_private_key_file: '/tmp/key.pem'
           vars:
