@@ -1,0 +1,62 @@
+spec_version: 2
+description: Auto generated blueprint for terraform module instance
+inputs:
+  ami:
+    type: string
+    default: ami-08c236264cd61e36c
+  aws_region:
+    type: string
+    default: us-east-2
+  instance_type:
+    type: string
+    default: t3.large
+  key_name:
+    type: string
+    default: ''
+  sandboxID:
+    type: string
+    default: fonseca
+  sg:
+    type: string
+    default: sg-0facf2b447abcbdd7
+  subnet_id:
+    type: string
+    default: subnet-0f83179771b62e7bf
+  agent:
+    type: agent
+outputs:
+  vm-dns:
+    value: '{{ .grains.instance.outputs.vm-dns }}'
+    quick: true
+  vm-ip:
+    value: '{{ .grains.instance.outputs.vm-ip }}'
+    quick: true
+grains:
+  instance:
+    kind: terraform
+    spec:
+      source:
+        store: westrock
+        path: terraform/instance
+      agent:
+        # The Torque agent that will be used to provision the environment.
+        name: '{{ .inputs.agent }}'
+        # A service account annotated with a role ARN with permissions to run the asset
+      # service-account: <service-account-name>
+      inputs:
+      - ami: '{{ .inputs.ami }}'
+      - aws_region: '{{ .inputs.aws_region }}'
+      - instance_type: '{{ .inputs.instance_type }}'
+      - key_name: '{{ .inputs.key_name }}'
+      - sandboxID: '{{ .inputs.sandboxID }}'
+      - sg: '{{ .inputs.sg }}'
+      - subnet_id: '{{ .inputs.subnet_id }}'
+      # The environment variables declared in this section will be available during the grain deployment as well as the grain destroy phase
+      # env-vars:
+      # - VAR_NAME: var value
+      env-vars: []
+      outputs:
+      - vm-dns
+      - vm-ip
+    # The terraform version that will be used to deploy the module
+    tf-version: 1.5.5
