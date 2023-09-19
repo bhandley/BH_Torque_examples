@@ -48,7 +48,7 @@ grains:
         - sandboxID: '{{ .inputs.sandboxID }}'
         - sg: '{{ .inputs.sg }}'
         - agent: '{{ .inputs.agent }}'  
-        - subnet: '{{ .inputs.subnet_id }}'     
+        - subnet_id: '{{ .inputs.subnet_id }}'     
       outputs:
         - vm-dns
         - vm-ip
