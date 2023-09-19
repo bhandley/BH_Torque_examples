@@ -19,7 +19,7 @@ inputs:
     default: sandbox
   sg:
     type: string
-    default: sg-0e66ae65a64e4b1f2
+    default: sg-02bda7feb9c58b182
   subnet_id:
     type: string
     default: subnet-0d91f8768e9e3db1a
