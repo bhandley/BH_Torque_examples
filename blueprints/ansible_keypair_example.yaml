@@ -4,10 +4,10 @@ description: Basic test of Ansible running on instance launched via Torque using
 inputs:
   ami:
     type: string
-    default: ami-06877e0332c328205
+    default: ami-0ea40e14f3cb7d268
   aws_region:
     type: string
-    default: us-west-1
+    default: us-east-1
   instance_type:
     type: string
     default: t3.small
@@ -19,10 +19,10 @@ inputs:
     default: sandbox
   sg:
     type: string
-    default: sg-0e906aa739a2eb5d6
+    default: sg-0e66ae65a64e4b1f2
   subnet_id:
     type: string
-    default: subnet-0144daae4ce8222e1
+    default: subnet-0d91f8768e9e3db1a
   agent:
     type: agent
 outputs:
@@ -68,7 +68,7 @@ grains:
         all:
           hosts: 
            ec2:
-              ansible_host: '{{ .grains.instance.outputs.vm-ip }}'
+              ansible_host: '{{ .grains.instance.outputs.vm-dns }}'
               ansible_user: 'ec2-user'
               ansible_ssh_private_key_file: '/tmp/key.pem'
           vars:
