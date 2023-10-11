@@ -18,7 +18,7 @@ on:
         description: 'Provide environment name'
         type: string
         required: false
-        default: ssm_for_se_env
+        default: ssm_for_se_env_${{ github.run_id }}
       repo_name:
         description: 'default repository name'
         type: string
