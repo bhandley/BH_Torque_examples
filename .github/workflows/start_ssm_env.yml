@@ -78,5 +78,5 @@ jobs:
         # the end of the provided duration. Default is 120 minutes.
         duration: 60
     outputs:
-          environment_name: 
+          environment_name: ${{ inputs.environment_name }}
           environment_id: ${{ steps.test-ssm-with-torque.outputs.environment_id }}
