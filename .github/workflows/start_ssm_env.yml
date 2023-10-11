@@ -1,0 +1,82 @@
+# This is a workflow that is manually triggered for starting ssm environment
+name: Manual Deploy SSM environment
+
+on:
+  workflow_dispatch:
+    inputs:
+      space:
+        description: 'The name of the Torque Space your repository is connected to'
+        type: string
+        required: true
+        default: SM-SE-Candidate-Exercise
+      blueprint_name:
+        description: 'Provide blueprint name'
+        type: string
+        required: false
+        default: ssm_for_se
+      environment_name:
+          description: 'Provide environment name'
+          type: string
+          required: false
+          default: ssm_for_se_env
+      aws_region:
+        description: 'AWS default region'
+        type: string
+        required: true
+        default: us-east-1
+      ssm_name:
+        description: 'Provide ssm key name name'
+        type: string
+        required: true
+        default: ssm_key_name
+      ssm_value:
+        description: 'Provide ssm value'
+        type: string
+        required: true
+        default: ssm_value_for_Shay_se
+jobs:
+  test-ssm-with-torque:
+    runs-on: ubuntu-latest
+    steps:
+    - name: test-ssm-with-torque
+      uses: QualiTorque/torque-start-environment@v1
+      with:
+        # The name of the Torque Space your repository is connected to
+        space: ${{ inputs.spcae }}
+
+        # Provide the long term Torque token. You can generate it in Torque > Settings > Integrations
+        # or via the REST API.
+        torque_token: ${{ secrets.TORQUE_TOKEN }}
+
+        # Provide the name of the blueprint to be used as a source for the environment.
+        blueprint_name: ${{ inputs.blueprint_name }}
+
+        # Provide the name of a blueprints reposiory to take the blueprint_name from
+        repository_name: my-repo
+
+        # [Optional] Provide a name for the environment. If not set, the name will be generated automatically
+        # using the following pattern <BlueprintName>-build-<RunNumber>
+        environment_name: ${{ inputs.environment_name }}
+
+        # [Optional] You can provide the blueprint's inputs as a comma-separated list of key=value
+        # pairs. For example: key1=value1, key2=value2.
+        #inputs: 'PORT=8080,AWS_INSTANCE_TYPE=m5.large'
+        inputs: 'name: ${{ inputs.ssm_name }}, 
+                value: ${{ inputs.ssm_value }}, 
+                aws_region: ${{ inputs.aws_region }}, 
+                AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}, 
+                AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}'
+        # [Optional] Provide the hostname string. In rare cases you migth want to override the main
+        # Torque hostname address 'portal.qtorque.io'. 
+        torque_hostname: "portal.qtorque.io"
+    
+        # [Optional] Set the timeout to wait (in minutes) for the environment to become active. If not set, an
+        # action just starts an environment and returns its ID without waiting for 'Active' status.
+        timeout: 15
+    
+        # [Optional] Set the environment duration in minutes. The environment will automatically de-provision at 
+        # the end of the provided duration. Default is 120 minutes.
+        duration: 60
+    outputs:
+          environment_name: 
+          environment_id: ${{ steps.test-ssm-with-torque.outputs.environment_id }}
