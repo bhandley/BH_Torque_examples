@@ -13,7 +13,7 @@ on:
         description: 'Provide blueprint name'
         type: string
         required: false
-        default: ssm_for_se
+        default: ssm
       environment_name:
         description: 'Provide environment name'
         type: string
