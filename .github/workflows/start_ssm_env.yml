@@ -15,10 +15,15 @@ on:
         required: false
         default: ssm_for_se
       environment_name:
-          description: 'Provide environment name'
-          type: string
-          required: false
-          default: ssm_for_se_env
+        description: 'Provide environment name'
+        type: string
+        required: false
+        default: ssm_for_se_env
+      repo_name:
+        description: 'default repository name'
+        type: string
+        required: true
+        default: qtorque
       aws_region:
         description: 'AWS default region'
         type: string
@@ -52,7 +57,7 @@ jobs:
         blueprint_name: ${{ inputs.blueprint_name }}
 
         # Provide the name of a blueprints reposiory to take the blueprint_name from
-        repository_name: my-repo
+        repository_name: ${{ inputs.repo_name }}
 
         # [Optional] Provide a name for the environment. If not set, the name will be generated automatically
         # using the following pattern <BlueprintName>-build-<RunNumber>
