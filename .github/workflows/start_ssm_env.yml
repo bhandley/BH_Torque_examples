@@ -61,12 +61,12 @@ jobs:
 
         # [Optional] Provide a name for the environment. If not set, the name will be generated automatically
         # using the following pattern <BlueprintName>-build-<RunNumber>
-        environment_name: ${{ inputs.environment_name }}
+        #environment_name: ${{ inputs.environment_name }}
 
         # [Optional] You can provide the blueprint's inputs as a comma-separated list of key=value
         # pairs. For example: key1=value1, key2=value2.
         #inputs: 'PORT=8080,AWS_INSTANCE_TYPE=m5.large'
-        inputs: 'name=${{ inputs.ssm_name }},value=${{ inputs.ssm_value }},aws_region=${{ inputs.aws_region }},AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY }},AWS_SECRET_KEY=${{ secrets.AWS_SECRET_KEY }}'
+        inputs: 'aws_region=${{ inputs.aws_region }},name=${{ inputs.ssm_name }},value=${{ inputs.ssm_value }},agent=Quali, AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY }},AWS_SECRET_KEY=${{ secrets.AWS_SECRET_KEY }}'
         # [Optional] Provide the hostname string. In rare cases you migth want to override the main
         # Torque hostname address 'portal.qtorque.io'. 
         torque_hostname: "portal.qtorque.io"
