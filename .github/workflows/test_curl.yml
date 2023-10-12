@@ -95,7 +95,7 @@ jobs:
         curl -s -v --location --request POST $API_URL \
             --header 'Content-Type: application/json' \
             --header 'Accept: application/json' \
-            --header 'Authorization: ${{ secrets.TORQUE_TOKEN }}' \
+            --header 'Authorization: Bearer ${{ secrets.TORQUE_TOKEN }}' \
             --data-raw $API_DATA
 
     #echo "::set-output name=api-response::$RESPONSE"
