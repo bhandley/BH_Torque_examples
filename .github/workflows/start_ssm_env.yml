@@ -48,8 +48,7 @@ jobs:
       uses: QualiTorque/torque-start-environment@v1
       with:
         space: ${{ inputs.spcae }}
-        #torque_token: "${{ secrets.TORQUE_TOKEN }}"
-        torque_token: "Bearer Q9m7x-lBI1CQsZ1pilhc6VtUBOfgqDyxYn-NVUBnvec"
+        torque_token: "${{ secrets.TORQUE_TOKEN }}"
         blueprint_name: ${{ inputs.blueprint_name }}
         repository_name: ${{ inputs.repo_name }}
         inputs: 'aws_region="${{ inputs.aws_region }}",name="${{ inputs.ssm_name }}",value="${{ inputs.ssm_value }}",agent="Quali", AWS_ACCESS_KEY="${{ secrets.AWS_ACCESS_KEY }},AWS_SECRET_KEY=${{ secrets.AWS_SECRET_KEY }}"'
