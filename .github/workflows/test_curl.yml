@@ -92,18 +92,23 @@ jobs:
         echo 'Got the following inputs- ${{ secrets.TORQUE_TOKEN }}, ${{secrets.AWS_ACCESS_KEY }}, ${{ secrets.AWS_SECRET_KEY }}, ${{ inputs.aws_region }}'
         echo "will run curl to $API_URL"
         echo "print the folloing data - $API_DATA"
-
-        RESPONSE=$(curl --location --request POST $API_URL \
+        echo "curl --location --request POST $API_URL \
+          --header 'Content-Type: application/json' \
+          --header 'Accept: application/json' \
+          --header 'Authorization: ${{ secrets.TORQUE_TOKEN }}' \
+          --data-raw $API_DATA"
+        curl --location --request POST $API_URL \
             --header 'Content-Type: application/json' \
             --header 'Accept: application/json' \
             --header 'Authorization: ${{ secrets.TORQUE_TOKEN }}' \
-            --data-raw $API_DATA)
-        echo "::set-output name=api-response::$RESPONSE"
+            --data-raw $API_DATA
 
-  ouputs-collector-job:
-    needs: launch_torque_env
-    runs-on: ubuntu-latest
-    steps:
-      - name: Access API Response
-        run: |
-          echo "API Response from the previous job: ${{ needs.launch_torque_env.outputs.api-response }}"   
+    #echo "::set-output name=api-response::$RESPONSE"
+
+  #ouputs-collector-job:
+  #  needs: launch_torque_env
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - name: Access API Response
+  #      run: |
+  #        echo "API Response from the previous job: ${{ needs.launch_torque_env.outputs.api-response }}"   
