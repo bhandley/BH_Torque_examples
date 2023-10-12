@@ -3,12 +3,12 @@
 ####################################
 # Workflow Metadata
 ###################################
-name: Manual Deploy SSM environment
+name: Torque SSM environment with torque-start-environmen
 
 
-#################################
+###################################
 # workflow inputs
-################################
+###################################
 
 on:
   workflow_dispatch:
