@@ -91,6 +91,8 @@ jobs:
       run: |
         echo "Got the following inputs- ${{ secrets.TORQUE_TOKEN }}, ${{secrets.AWS_ACCESS_KEY }}, ${{ secrets.AWS_SECRET_KEY }}, ${{ inputs.aws_region }}"
         echo "will run curl to $API_URL"
+        echo "print the folloing data - $API_DATA"
+        
         RESPONSE=$(curl --location --request POST "$API_URL \
             --header 'Content-Type: application/json' \
             --header 'Accept: application/json' \
