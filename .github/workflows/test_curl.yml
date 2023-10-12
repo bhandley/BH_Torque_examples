@@ -84,13 +84,14 @@ jobs:
             "AWS_ACCESS_KEY": "${{ secrets.AWS_ACCESS_KEY }}",
             "AWS_SECRET_KEY": "${{ secrets.AWS_SECRET_KEY }}"
         },
-        "compute_availability": 0
+          "compute_availability": 0
         }'
     steps:
     - name: run blueprint ${{ inputs.blueprint_name}} 
       run: |
         echo "Got the following inputs- ${{ secrets.TORQUE_TOKEN }}, ${{secrets.AWS_ACCESS_KEY }}, ${{ secrets.AWS_SECRET_KEY }}, ${{ inputs.aws_region }}"
-        RESPONSE=$(curl --location --request POST $API_URL \
+        echo "will run curl to $API_URL"
+        RESPONSE=$(curl --location --request POST "$API_URL \
             --header 'Content-Type: application/json' \
             --header 'Accept: application/json' \
             --header 'Authorization: ${{ secrets.TORQUE_TOKEN }}' \
