@@ -66,7 +66,7 @@ jobs:
         "blueprint_name": "${{ inputs.blueprint_name }}",
         "description": "NA",
         "owner_email": "shayros@gmail.com",
-        "automation": "true",
+        "automation": True,
         "duration": "PT15M",
         "source": {
             "blueprint_name": "${{ inputs.blueprint_name }}",
