@@ -67,7 +67,7 @@ jobs:
         "description": "NA",
         "owner_email": "shayros@gmail.com",
         "automation": "true",
-        "duration": "PT2H",
+        "duration": "PT15M",
         "source": {
             "blueprint_name": "${{ inputs.blueprint_name }}",
             "repository_name": "${{ inputs.repo_name }}",
