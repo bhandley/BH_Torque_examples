@@ -67,7 +67,7 @@ jobs:
         "description": "NA",
         "owner_email": "shayros@gmail.com",
         "automation": true,
-        "duration": "PH2H",
+        "duration": "PT2H",
         "source": {
             "blueprint_name": "${{ inputs.blueprint_name }}",
             "repository_name": "${{ inputs.repo_name }}",
@@ -98,12 +98,12 @@ jobs:
             --header 'Authorization: Bearer ${{ secrets.TORQUE_TOKEN }}' \
             --data-raw $API_DATA
 
-    #echo "::set-output name=api-response::$RESPONSE"
+        echo "::set-output name=api-response::$RESPONSE"
 
-  #ouputs-collector-job:
-  #  needs: launch_torque_env
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #    - name: Access API Response
-  #      run: |
-  #        echo "API Response from the previous job: ${{ needs.launch_torque_env.outputs.api-response }}"   
+  ouputs-collector-job:
+    needs: launch_torque_env
+    runs-on: ubuntu-latest
+    steps:
+      - name: Access API Response
+        run: |
+          echo "API Response from the previous job: ${{ needs.launch_torque_env.outputs.api-response }}"   
