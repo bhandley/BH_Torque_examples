@@ -63,7 +63,7 @@ jobs:
       API_DATA: '{
         "sandbox_name": "${{ inputs.sendbox }}",
         "environment_name": "${{ inputs.environment_name }}",
-        "blueprint_name": "${{ inputs.ssm_name }}",
+        "blueprint_name": "${{ inputs.blueprint_name }}",
         "description": "NA",
         "owner_email": "shayros@gmail.com",
         "automation": "true",
