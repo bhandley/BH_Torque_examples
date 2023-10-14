@@ -92,7 +92,7 @@ jobs:
         echo 'Got the following inputs- ${{ secrets.TORQUE_TOKEN }}, ${{secrets.AWS_ACCESS_KEY }}, ${{ secrets.AWS_SECRET_KEY }}, ${{ inputs.aws_region }}'
         echo "will run curl to $API_URL"
         echo "print the folloing data - $API_DATA"
-        curl -s -v --location --request POST $API_URL \
+        curl -s --trace --request POST $API_URL \
             --header 'Content-Type: application/json' \
             --header 'Accept: application/json' \
             --header 'Authorization: Bearer ${{ secrets.TORQUE_TOKEN }}' \
