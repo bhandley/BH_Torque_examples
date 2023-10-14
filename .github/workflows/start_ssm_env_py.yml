@@ -3,7 +3,6 @@
 ###################################
 name: Torque SSM environment with python
 
-
 ###################################
 # workflow inputs
 ###################################
@@ -12,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       space:
-        description: 'The name of the Torque Space your repository is connected to'
+        description: 'Torque Space your repository is connected to'
         type: string
         required: true
         default: SM-SE-Candidate-Exercise
@@ -69,7 +68,7 @@ jobs:
       - name: Run Python script
         id: python-script
         run: |
-
+          #!/usr/bin/env python3
           import requests
           import json
           
