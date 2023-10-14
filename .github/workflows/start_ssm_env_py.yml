@@ -25,7 +25,7 @@ on:
         description: 'Provide ssm value'
         type: string
         required: true
-        default: ssm_value_for_Shay_se_${{ github.run_number }}
+        default: ssm_value_for_Shay_se_100
 
 ######################
 # Jobs
