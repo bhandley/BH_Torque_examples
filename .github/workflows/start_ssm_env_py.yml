@@ -20,12 +20,12 @@ on:
         description: 'Provide ssm key name name'
         type: string
         required: true
-        default: ssm_key_name
+        default: key_name_for_se
       ssm_value:
         description: 'Provide ssm value'
         type: string
         required: true
-        default: ssm_value_for_Shay_se
+        default: ssm_value_for_Shay_se_${{ github.run_number }}
 
 ######################
 # Jobs
