@@ -66,7 +66,7 @@ jobs:
         "blueprint_name": "${{ inputs.ssm_name }}",
         "description": "NA",
         "owner_email": "shayros@gmail.com",
-        "automation": true,
+        "automation": "true",
         "duration": "PT2H",
         "source": {
             "blueprint_name": "${{ inputs.blueprint_name }}",
@@ -83,7 +83,7 @@ jobs:
             "agent": "Quali",
             "AWS_ACCESS_KEY": "${{ secrets.AWS_ACCESS_KEY }}",
             "AWS_SECRET_KEY": "${{ secrets.AWS_SECRET_KEY }}"
-        },
+          },
           "compute_availability": 0
         }'
     steps:
