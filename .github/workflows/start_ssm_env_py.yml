@@ -1,0 +1,115 @@
+####################################
+# Workflow Metadata
+###################################
+name: Torque SSM environment with python
+
+
+###################################
+# workflow inputs
+###################################
+
+on:
+  workflow_dispatch:
+    inputs:
+      space:
+        description: 'The name of the Torque Space your repository is connected to'
+        type: string
+        required: true
+        default: SM-SE-Candidate-Exercise
+      sendbox:
+        description: 'The name of the Torque sendbox'
+        type: string
+        required: true
+        default: shay_se_sandbox
+      blueprint_name:
+        description: 'Provide blueprint name'
+        type: string
+        required: false
+        default: ssm
+      environment_name:
+        description: 'Provide environment name'
+        type: string
+        required: false
+        default: ssm_for_se_env_1
+      repo_name:
+        description: 'default repository name'
+        type: string
+        required: true
+        default: qtorque
+      aws_region:
+        description: 'AWS default region'
+        type: string
+        required: true
+        default: us-east-1
+      ssm_name:
+        description: 'Provide ssm key name name'
+        type: string
+        required: true
+        default: ssm_key_name
+      ssm_value:
+        description: 'Provide ssm value'
+        type: string
+        required: true
+        default: ssm_value_for_Shay_se
+
+######################
+# Jobs
+######################
+jobs:
+  run-python-script-for-ssm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+  
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Run Python script
+        id: python-script
+        run: |
+
+          import requests
+          import json
+          
+          url = "https://portal.qtorque.io/api/spaces/SM-SE-Candidate-Exercise/environments"
+          
+          payload = json.dumps({
+            "sandbox_name": "shay_se_sandbox_3",
+            "environment_name": "Shay_Test-SE_torque_env_3",
+            "blueprint_name": "ssm",
+            "description": "NA",
+            "owner_email": "shayros@gmail.com",
+            "automation": True,
+            "duration": "PT15M",
+            "source": {
+              "blueprint_name": "ssm",
+              "repository_name": "qtorque",
+              "branch": "",
+              "commit": ""
+            },
+            "visibility": "",
+            "notes": "",
+            "inputs": {
+              "name": "shay_se_test_name_with_py",
+              "value": "shay_se_test_value_with_py",
+              "aws_region": "us-east-1",
+              "agent": "Quali",
+              "AWS_ACCESS_KEY": "${{ secrets.AWS_ACCESS_KEY }}",
+              "AWS_SECRET_KEY": "${{ secrets.AWS_SECRET_KEY }}"
+            },
+            "compute_availability": 0
+          })
+          headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ${{ secrets.TORQUE_TOKEN }}'
+          }
+          
+          response = requests.request("POST", url, headers=headers, data=payload)
+          
+          print(response.text)
+        
+          
+

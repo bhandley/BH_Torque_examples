@@ -63,11 +63,11 @@ jobs:
       API_DATA: '{
         "sandbox_name": "${{ inputs.sendbox }}",
         "environment_name": "${{ inputs.environment_name }}",
-        "blueprint_name": "${{ inputs.ssm_name }}",
+        "blueprint_name": "${{ inputs.blueprint_name }}",
         "description": "NA",
         "owner_email": "shayros@gmail.com",
-        "automation": true,
-        "duration": "PT2H",
+        "automation": True,
+        "duration": "PT15M",
         "source": {
             "blueprint_name": "${{ inputs.blueprint_name }}",
             "repository_name": "${{ inputs.repo_name }}",
@@ -83,7 +83,7 @@ jobs:
             "agent": "Quali",
             "AWS_ACCESS_KEY": "${{ secrets.AWS_ACCESS_KEY }}",
             "AWS_SECRET_KEY": "${{ secrets.AWS_SECRET_KEY }}"
-        },
+          },
           "compute_availability": 0
         }'
     steps:
@@ -92,7 +92,7 @@ jobs:
         echo 'Got the following inputs- ${{ secrets.TORQUE_TOKEN }}, ${{secrets.AWS_ACCESS_KEY }}, ${{ secrets.AWS_SECRET_KEY }}, ${{ inputs.aws_region }}'
         echo "will run curl to $API_URL"
         echo "print the folloing data - $API_DATA"
-        curl -s -v --location --request POST $API_URL \
+        curl -s --trace -vvv --location --request POST $API_URL \
             --header 'Content-Type: application/json' \
             --header 'Accept: application/json' \
             --header 'Authorization: Bearer ${{ secrets.TORQUE_TOKEN }}' \
