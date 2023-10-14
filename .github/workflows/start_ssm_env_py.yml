@@ -66,6 +66,8 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: 3.8
+      - name: Install dependencies
+        run: pip install -r requirements.txt
       - name: Run Python script
         id: python-script
         uses: jannekem/run-python-script-action@v1
@@ -74,9 +76,9 @@ jobs:
           
             import requests
             import json
-            
+
             url = "https://portal.qtorque.io/api/spaces/SM-SE-Candidate-Exercise/environments"
-            
+
             payload = json.dumps({
               "sandbox_name": "shay_se_sandbox_3",
               "environment_name": "Shay_Test-SE_torque_env_3",
@@ -108,9 +110,9 @@ jobs:
               'Accept': 'application/json',
               'Authorization': 'Bearer ${{ secrets.TORQUE_TOKEN }}'
             }
-            
+
             response = requests.request("POST", url, headers=headers, data=payload)
-            
+
             print(response.text)
           
           
