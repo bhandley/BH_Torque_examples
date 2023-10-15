@@ -94,8 +94,8 @@ jobs:
             response = requests.request("POST", url, headers=headers, data=payload)
             
             # Set the API response as an output
-            print(response.json()) >> $GITHUB_OUTPUT
-            
+            print(response.text) >> $GITHUB_OUTPUT
+
             
           
 
