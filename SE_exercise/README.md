@@ -182,9 +182,9 @@ Define the relevant Global Environment and Pre-request-script to successfully de
 > During my attempts to generate the correct POST request I had to figure out the syntax of the `duration` field.
 > I had to manually lunch again the `ssm` blueprint and use the browser Dev tools to track down the post request and verify the correct syntax of the `duration` field.
 >
->
-> ![duration field](./debug_duration.png) 
-> 
+
+![duration field](./debug_duration.png) 
+ 
 
 Now that I could run the API request from remote I could create the structure of the Github action workflow.
 
