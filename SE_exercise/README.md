@@ -3,6 +3,18 @@
 
 # Technical Evaluation Exercise 
 
+- [Technical Evaluation Exercise](#technical-evaluation-exercise)
+  - [Experience Torque Product](#experience-torque-product)
+    - [overview](#overview)
+  - [Task activities](#task-activities)
+    - [Initiation and setup](#initiation-and-setup)
+    - [Blueprint modification.](#blueprint-modification)
+    - [Launch Environment](#launch-environment)
+    - [Automation and REST calls](#automation-and-rest-calls)
+    - [Github Action workflow](#github-action-workflow)
+  - [Conclusions](#conclusions)
+
+
 ## Experience Torque Product
 
 ### overview
