@@ -56,6 +56,7 @@ jobs:
           script: |
             import requests
             import json
+            import os
 
             url = "https://portal.qtorque.io/api/spaces/${{ vars.SPACE_NAME }}/environments"
 
@@ -94,7 +95,8 @@ jobs:
             response = requests.request("POST", url, headers=headers, data=payload)
             
             # Set the API response as an output
-            print(response.text) >> $GITHUB_OUTPUT
+            os.system(f'echo {response} >> $GITHUB_OUTPUT')
+            
 
             
           
