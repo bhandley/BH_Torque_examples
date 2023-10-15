@@ -33,9 +33,6 @@ on:
 jobs:
   run-python-script-for-ssm:
     runs-on: ubuntu-latest
-    outputs:
-      eve_id: ${{ steps.python-script.outputs.api_response }}
-      
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -49,7 +46,7 @@ jobs:
         run: cp .github/requirements.txt .
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: Run Python script
+      - name: Run Python script - start new environment 
         id: python-script
         uses: jannekem/run-python-script-action@v1
         with:
