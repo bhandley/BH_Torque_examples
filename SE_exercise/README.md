@@ -1,5 +1,7 @@
+
+<img src="./quali_torque_logo.png" width="60%">
+
 # Technical Evaluation Exercise 
-<img src="./quali_torque_logo.png" width="30%">
 
 ## Experience Torque Product
 
@@ -191,8 +193,21 @@ On the target AWS account we got the following results:
 ![aws ssm results](./aws_ssm_results.png)
 
 
+## Conclusions
 
+In conclusion, this technical evaluation exercise provided a comprehensive opportunity to gain hands-on experience with Quali Torque's SaaS product and demonstrate various technical skills, including problem-solving, integration, and automation.
 
+The exercise resulted in the successful remote launch of the environment, as demonstrated by a GitHub Action workflow. This event ID confirmed the execution of the POST request, and corresponding results were observed in Torque environment page in the target AWS account. The environment was terminated at the duriation timer experation.
 
+The Quali Torque SaaS solution offers a range of business benefits that can significantly impact an organization's operations and outcomes. These benefits extend beyond technical capabilities and are instrumental in achieving business goals and objectives. Here are some key aspects of the business value that Torque brings to the table:
+
+1. Improved Efficiency and Productivity
+2. Cost Reduction
+3. Enhanced Collaboration
+4. Scalability and Flexibility
+5. Risk Mitigation (manual processes and human error)
+7. Compliance and Reporting
+
+And probably there are many more...
 
 
