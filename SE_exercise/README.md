@@ -40,7 +40,15 @@ The following activities were executed:
 6)  Review the ssm blueprint which was added to the Blueprint section.
 
 ### Blueprint modification.
-The initiation phase and Blueprint creation basicly managed to use the original Terraform file and enrich it with additional options such as blueprint inputs which can be provided by the user, API or CI plugin when creating an environment from this blueprint.
+The imported Terraform stor and create a new key value pair in AWS System Service Managment. 
+The initiation phase and Blueprint creation basicly managed to enrich the original .tf file with additional options such as:
+ 
+ * Duriation - environment timer.
+ * Blueprint inputs - provided by the user
+ * Tags - The user could add default tags for better metadata records.  
+ * Use API or cli plugin when creating an environment with REST.
+ * Rule base posicy - to enforce environment setup.
+
 (below is the ssm blueprint yaml file for reference).
 
 I used Torque document below to modify the Blueprint's inputs and add AWS credencial
@@ -172,9 +180,17 @@ I used github **Actions secrets and variables** to create the relevant secreats 
 
 To run the request I chose to use Python script with the `request` command.
 
-The github action could be found file 
+The github action could be found file could be found in this repository at [start_ssm_env_py.yml](../.github/workflows/start_ssm_env_py.yml)
 
-[py_file.yml](../.github/workflows/manual.yml  ':include')
+Below is an example of successful Github action workflow and the **event id** created following the POST request.
+
+![workflow run](./github_action_success.png)
+
+On the target AWS account we got the following results:
+
+![aws ssm results](./aws_ssm_results.png)
+
+
 
 
 
