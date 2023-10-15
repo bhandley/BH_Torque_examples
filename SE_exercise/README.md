@@ -6,9 +6,9 @@
 ## Experience Torque Product
 
 ### overview
-This exercise is designed to allows potential SE to gain expereince with Quali Torque SaaS product and demonstrate problem solving, integration and technical skills.
+This exercise is designed to allows potential SE to gain experience with Quali Torque SaaS product and demonstrate problem solving, integration and technical skills.
 
-The main parts of this exercise include the followng tasks:
+The main parts of this exercise include the following tasks:
 
 :white_check_mark: Explore and review Torque SaaS platform.
 
@@ -24,36 +24,36 @@ The main parts of this exercise include the followng tasks:
 
 ## Task activities
 
-Below is a list of activtes made to complete the execrsie and execute the task. Wach phse will include reference from the code modified, activities and the documents used to resolve and assist completing the task.
+Below is a list of activities made to complete the exercise and execute the task. Each phase will include reference from the code modified, activities and the documents used to resolve and assist completing the task.
 
 ### Initiation and setup
 The initiation phase includes discovery and import of the destination repository to Torque for creating the blueprints.
-In this phase I used the **Asset Discovery** procedure describes in Qorque document:  
+In this phase I used the **Asset Discovery** procedure describes in Torque document:  
 
 :owl: https://docs.qtorque.io/getting-started/Discover%20Your%20Assets 
 
 The following activities were executed:
 
-1) Login to Torque and revirew the menu options
-2) Fork Quali Torge github source from: https://github.com/bhandley/BH_Torque_examples to my repository: https://github.com/shayrm/SE_Test_Torque
+1) Login to Torque and review the menu options
+2) Fork Quali Torque github source from: https://github.com/bhandley/BH_Torque_examples to my repository: https://github.com/shayrm/SE_Test_Torque
 3) Review the `ssm.tf` file and understand the used resources and inputs.
 4) In Torque SaaS use the **Repositories** option to integrate to my Github repository.
 5) Allow discovery of my repository to Torque repository with required permissions.
 6)  Review the ssm blueprint which was added to the Blueprint section.
 
 ### Blueprint modification.
-The imported Terraform stor and create a new key value pair in AWS System Service Managment. 
-The initiation phase and Blueprint creation basicly managed to enrich the original .tf file with additional options such as:
+The imported Terraform stor and create a new key value pair in AWS System Service Management. 
+The initiation phase and Blueprint creation basically managed to enrich the original .tf file with additional options such as:
  
- * Duriation - environment timer.
+ * Duration - environment timer.
  * Blueprint inputs - provided by the user
  * Tags - The user could add default tags for better metadata records.  
  * Use API or cli plugin when creating an environment with REST.
- * Rule base posicy - to enforce environment setup.
+ * Rule base policy - to enforce environment setup.
 
 (below is the ssm blueprint yaml file for reference).
 
-I used Torque document below to modify the Blueprint's inputs and add AWS credencial
+I used Torque document below to modify the Blueprint's inputs and add AWS credentials
 
 :owl: https://docs.qtorque.io/getting-started/Getting%20starting%20with%20terraform
 
@@ -127,9 +127,9 @@ grains:
 
 ### Launch Environment 
 At first I launch the environment from the GUI.
-This phase alow me to make sure the Blueprint is correct and environment could be executed to preduce the required IaaC.
+This phase alow me to make sure the Blueprint is correct and environment could be executed to produce the required IaaC.
 
-Below is an axample of manual execution:
+Below is an example of manual execution:
 
 ![ssm blueprint](./ssm_bp_1.png)
 
@@ -152,12 +152,12 @@ At first, I tried to list the existing environment `Gets environment details`
 ![List Envorinment](./list_env.png)
 
 
-Confirming the Token validation, I could move on and selet the POST `/api/spaces/{space_name}/environments`
+Confirming the Token validation, I could move on and use the POST `/api/spaces/{space_name}/environments`
 
 Next step was to import the API reference from [Torque API Reference](https://portal.qtorque.io/api_reference/#/) to Postman.
-In Postman I could define environment paramerts which could help later on with the Github Action yaml file.
+In Postman I could define environment parameters which could help later on with the Github Action yaml file.
 
-Defind the relevant Global Environment and Pre-request-script to successfuly define the POST schema.
+Define the relevant Global Environment and Pre-request-script to successfully define the POST schema.
 
 ![postman new env](./Postman_new_env_1.png)
 
@@ -167,10 +167,10 @@ Defind the relevant Global Environment and Pre-request-script to successfuly def
 
 
 > [!IMPORTANT]  
-> During my attempts to generate the correct POST request I had to figure out the syntext of the `duriation` field.
-> I had to manualy lunch again the `ssm` blueprint and use the browser Dev tools to track down the post request and verify the correct sintext of the `duriation` field.
+> During my attempts to generate the correct POST request I had to figure out the syntax of the `duration` field.
+> I had to manually lunch again the `ssm` blueprint and use the browser Dev tools to track down the post request and verify the correct syntax of the `duration` field.
 >
-> ![duriation field](./debug_duriation.png) 
+> ![duration field](./debug_duration.png) 
 
 Now that I could run the API request from remote I could create the structure of the Github action workflow.
 
@@ -178,7 +178,7 @@ Now that I could run the API request from remote I could create the structure of
 
 To run the workflow I choose to use manual `workflow_dispatch` following the [Manually running a workflow](https://docs.github.com/en/actions/using-workflows/manually-running-a-workflow) instructions.
 
-I used github **Actions secrets and variables** to create the relevant secreats (AWS keys and Torque token) and variables.
+I used github **Actions secrets and variables** to create the relevant secrets (AWS keys and Torque token) and variables.
 
 To run the request I chose to use Python script with the `request` command.
 
@@ -197,7 +197,7 @@ On the target AWS account we got the following results:
 
 In conclusion, this technical evaluation exercise provided a comprehensive opportunity to gain hands-on experience with Quali Torque's SaaS product and demonstrate various technical skills, including problem-solving, integration, and automation.
 
-The exercise resulted in the successful remote launch of the environment, as demonstrated by a GitHub Action workflow. This event ID confirmed the execution of the POST request, and corresponding results were observed in Torque environment page in the target AWS account. The environment was terminated at the duriation timer experation.
+The exercise resulted in the successful remote launch of the environment, as demonstrated by a GitHub Action workflow. This event ID confirmed the execution of the POST request, and corresponding results were observed in Torque environment page in the target AWS account. The environment was terminated at the duration timer expiration.
 
 The Quali Torque SaaS solution offers a range of business benefits that can significantly impact an organization's operations and outcomes. These benefits extend beyond technical capabilities and are instrumental in achieving business goals and objectives. Here are some key aspects of the business value that Torque brings to the table:
 
