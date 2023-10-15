@@ -26,7 +26,8 @@ Below is a list of activtes made to complete the execrsie and execute the task. 
 
 ### Initiation and setup
 The initiation phase includes discovery and import of the destination repository to Torque for creating the blueprints.
-In this phase I used the **Asset Discovery** procedure describes in Qorque document: 
+In this phase I used the **Asset Discovery** procedure describes in Qorque document:  
+
 :owl: https://docs.qtorque.io/getting-started/Discover%20Your%20Assets 
 
 The following activities were executed:
@@ -34,8 +35,9 @@ The following activities were executed:
 1) Login to Torque and revirew the menu options
 2) Fork Quali Torge github source from: https://github.com/bhandley/BH_Torque_examples to my repository: https://github.com/shayrm/SE_Test_Torque
 3) Review the `ssm.tf` file and understand the used resources and inputs.
-4) In Torque SaaS allow discovery of my repository to Torque repository with required permissions.
-5)  Review the ssm blueprint which was added to the Blueprint section.
+4) In Torque SaaS use the **Repositories** option to integrate to my Github repository.
+5) Allow discovery of my repository to Torque repository with required permissions.
+6)  Review the ssm blueprint which was added to the Blueprint section.
 
 ### Blueprint modification.
 The initiation phase and Blueprint creation basicly managed to use the original Terraform file and enrich it with additional options such as blueprint inputs which can be provided by the user, API or CI plugin when creating an environment from this blueprint.
@@ -43,16 +45,11 @@ The initiation phase and Blueprint creation basicly managed to use the original 
 
 I used Torque document below to modify the Blueprint's inputs and add AWS credencial
 
-
 :owl: https://docs.qtorque.io/getting-started/Getting%20starting%20with%20terraform
 
 :owl: https://docs.qtorque.io/getting-started/Getting%20starting%20with%20terraform#aws-authentication
 
 At the end of the process the following ssm yaml file was created:
-
-> [!WARNING] 
-> It would be good if the `AWS_ACCESS_KEY` and `AWS_SECRET_KEY` were masked and not presented as a clear text in the environment logs
-
 
 ```yaml
 spec_version: 2
@@ -113,3 +110,69 @@ grains:
     tf-version: 1.5.5
 
 ```
+
+> [!WARNING] 
+> It would be good if the `AWS_ACCESS_KEY` and `AWS_SECRET_KEY` were masked and not presented as a clear text in the environment logs.
+> 
+
+### Launch Environment 
+At first I launch the environment from the GUI.
+This phase alow me to make sure the Blueprint is correct and environment could be executed to preduce the required IaaC.
+
+Below is an axample of manual execution:
+
+![ssm blueprint](./ssm_bp_1.png)
+
+![ssm blueprint review](./ssm_bp_2.png)
+
+### Automation and REST calls
+
+Now after confirming manual launch of the environment, I moved on to the remote execution of the environment with REST API call.
+For that I use Torque API document and study how the API could be use for executing new environment from blueprint.
+
+:owl: https://portal.qtorque.io/api_reference/#/paths/api-spaces-space_name--environments/post
+
+To generate Authorization token I had to go to the Integrations page and click the Connect button on **GitHub Action** instruction.
+In the Configure section, I could click on “Generate New Token” and copy the displayed token value. 
+
+![Generate Token](./token.png)
+
+At first, I tried to list the existing environment `Gets environment details`
+
+![List Envorinment](./list_env.png)
+
+
+Confirming the Token validation, I could move on and selet the POST `/api/spaces/{space_name}/environments`
+
+Next step was to import the API reference from [Torque API Reference](https://portal.qtorque.io/api_reference/#/) to Postman.
+In Postman I could define environment paramerts which could help later on with the Github Action yaml file.
+
+Defind the relevant Global Environment and Pre-request-script to successfuly define the POST schema.
+
+![postman new env](./Postman_new_env_1.png)
+
+![postman pre-request](./Postman_pre-request.png)
+
+![postman vairlables](./Postman_env_params.png)
+
+
+> [!IMPORTANT]  
+> During my attempts to generate the correct POST request I had to figure out the syntext of the `duriation` field.
+> I had to manualy lunch again the `ssm` blueprint and use the browser Dev tools to track down the post request and verify the correct sintext of the `duriation` field.
+>
+> ![duriation field](./debug_duriation.png) 
+
+Now that I could run the API request from remote I could create the structure of the Github action workflow.
+
+### Github Action workflow
+
+To run the workflow I choose to use manual `workflow_dispatch` following the [Manually running a workflow](https://docs.github.com/en/actions/using-workflows/manually-running-a-workflow) instructions.
+
+I used github **Actions secrets and variables** to create the relevant secreats (AWS keys and Torque token) and variables.
+
+To run the request I chose to use Python script with the `request` command.
+
+
+
+
+
