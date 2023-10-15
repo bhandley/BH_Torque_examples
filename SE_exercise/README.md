@@ -174,7 +174,7 @@ To run the request I chose to use Python script with the `request` command.
 
 The github action could be found file 
 
-@@include[py_file.yml](../.github/workflows/manual.yml)
+[py_file.yml](../.github/workflows/manual.yml  ':include')
 
 
 
