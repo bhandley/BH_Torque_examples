@@ -172,6 +172,10 @@ I used github **Actions secrets and variables** to create the relevant secreats 
 
 To run the request I chose to use Python script with the `request` command.
 
+The github action could be found file 
+
+@@include[py_file.yml](../.github/workflows/manual.yml)
+
 
 
 
