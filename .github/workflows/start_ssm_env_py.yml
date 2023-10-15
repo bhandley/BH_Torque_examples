@@ -96,7 +96,7 @@ jobs:
             print(response.json())
 
             # Set the API response as an output
-            print("::set-output name=api_response::" + response.json())
+            print("::set-output name=api_response::" + str(response.json()))
           
           
 
