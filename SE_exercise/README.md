@@ -9,10 +9,15 @@ This exercise is designed to allows potential SE to gain expereince with Quali T
 The main parts of this exercise include the followng tasks:
 
 :white_check_mark: Explore and review Torque SaaS platform.
+
 :white_check_mark: Review and understand Torque Blueprints and Environments.
+
 :white_check_mark: Get familiar with Torque product and API documents.
+
 :white_check_mark: discover an existing Terraform module, create a Blueprint and launch the Blueprint.
+
 :white_check_mark: Automate the launch of the Blueprint by REST call with github actions.
+
 :white_check_mark: Understand Quali Torque SaaS product value proposition.
 
 ## Task activities
