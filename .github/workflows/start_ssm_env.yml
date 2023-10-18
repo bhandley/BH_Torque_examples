@@ -53,12 +53,6 @@ on:
 # Jobs
 ######################
 jobs:
-  Test-inputs:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Send greeting
-      run: echo "Got the following inputs- ${{ secrets.TORQUE_TOKEN }}, ${{secrets.AWS_ACCESS_KEY }}, ${{ secrets.AWS_SECRET_KEY }}, ${{ inputs.aws_region }}"
-        
   test-ssm-with-torque:
     runs-on: ubuntu-latest
     steps:
@@ -66,7 +60,7 @@ jobs:
       id: start-env
       uses: QualiTorque/torque-start-environment@v1
       with:
-        space: ${{ inputs.spcae }}
+        space: ${{ inputs.space }}
         torque_token: "${{ secrets.TORQUE_TOKEN }}"
         blueprint_name: ${{ inputs.blueprint_name }}
         repository_name: ${{ inputs.repo_name }}

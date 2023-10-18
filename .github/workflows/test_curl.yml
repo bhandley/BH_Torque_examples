@@ -92,13 +92,13 @@ jobs:
         echo 'Got the following inputs- ${{ secrets.TORQUE_TOKEN }}, ${{secrets.AWS_ACCESS_KEY }}, ${{ secrets.AWS_SECRET_KEY }}, ${{ inputs.aws_region }}'
         echo "will run curl to $API_URL"
         echo "print the folloing data - $API_DATA"
-        curl -s --trace -vvv --location --request POST $API_URL \
+        RESPONSE=$(curl -s --trace -vvv --location --request POST $API_URL \
             --header 'Content-Type: application/json' \
             --header 'Accept: application/json' \
             --header 'Authorization: Bearer ${{ secrets.TORQUE_TOKEN }}' \
-            --data-raw $API_DATA
+            --data-raw $API_DATA)
 
-        echo "::set-output name=api-response::$RESPONSE"
+        echo "{api-response}={RESPONSE}" >> $GITHUB_OUTPUT
 
   ouputs-collector-job:
     needs: launch_torque_env

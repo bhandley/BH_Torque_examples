@@ -139,7 +139,7 @@ grains:
 
 ### Launch Environment 
 At first I launch the environment from the GUI.
-This phase alow me to make sure the Blueprint is correct and environment could be executed to produce the required IaaC.
+This phase alow me to make sure the Blueprint is correct and environment could be executed to produce the required IaC.
 
 Below is an example of manual execution:
 
