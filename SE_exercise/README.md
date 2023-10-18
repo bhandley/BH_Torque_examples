@@ -143,9 +143,9 @@ This phase alow me to make sure the Blueprint is correct and environment could b
 
 Below is an example of manual execution:
 
-![ssm blueprint](./ssm_bp_1.png)
+![ssm blueprint](./imgs/ssm_bp_1.png)
 
-![ssm blueprint review](./ssm_bp_2.png)
+![ssm blueprint review](./imgs/ssm_bp_2.png)
 
 ### Automation and REST calls
 
@@ -157,11 +157,11 @@ For that I use Torque API document and study how the API could be use for execut
 To generate Authorization token I had to go to the Integrations page and click the Connect button on **GitHub Action** instruction.
 In the Configure section, I could click on “Generate New Token” and copy the displayed token value. 
 
-![Generate Token](./token.png)
+![Generate Token](./imgs/token.png)
 
 At first, I tried to list the existing environment `Gets environment details`
 
-![List Envorinment](./list_env.png)
+![List Envorinment](./imgs/list_env.png)
 
 
 Confirming the Token validation, I could move on and use the POST `/api/spaces/{space_name}/environments`
@@ -171,11 +171,11 @@ In Postman I could define environment parameters which could help later on with 
 
 Define the relevant Global Environment and Pre-request-script to successfully define the POST schema.
 
-![postman new env](./Postman_new_env_1.png)
+![postman new env](./imgs/Postman_new_env_1.png)
 
-![postman pre-request](./Postman_pre-request.png)
+![postman pre-request](./imgs/Postman_pre-request.png)
 
-![postman vairlables](./Postman_env_params.png)
+![postman vairlables](./imgs/Postman_env_params.png)
 
 
 > [!IMPORTANT]  
@@ -183,7 +183,7 @@ Define the relevant Global Environment and Pre-request-script to successfully de
 > I had to manually lunch again the `ssm` blueprint and use the browser Dev tools to track down the post request and verify the correct syntax of the `duration` field.
 >
 
-![duration field](./debug_duration.png) 
+![duration field](./imgs/debug_duration.png) 
  
 
 Now that I could run the API request from remote I could create the structure of the Github action workflow.
@@ -200,11 +200,11 @@ The github action could be found file could be found in this repository at [star
 
 Below is an example of successful Github action workflow and the **event id** created following the POST request.
 
-![workflow run](./github_action_success.png)
+![workflow run](./imgs/github_action_success.png)
 
 On the target AWS account we got the following results:
 
-![aws ssm results](./aws_ssm_results.png)
+![aws ssm results](./imgs/aws_ssm_results.png)
 
 
 ## Conclusions
