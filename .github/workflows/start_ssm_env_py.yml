@@ -1,0 +1,100 @@
+####################################
+# Workflow Metadata
+###################################
+name: Torque SSM environment with python
+
+
+###################################
+# workflow inputs
+###################################
+
+on:
+  workflow_dispatch:
+    inputs:
+      aws_region:
+        description: 'AWS default region'
+        type: string
+        required: true
+        default: us-east-1
+      ssm_name:
+        description: 'Provide ssm key name name'
+        type: string
+        required: true
+        default: key_name_for_se
+      ssm_value:
+        description: 'Provide ssm value'
+        type: string
+        required: true
+        default: ssm_value_for_Shay_se_100
+
+######################
+# Jobs
+######################
+jobs:
+  run-python-script-for-ssm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+  
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8
+          
+      - name: Copy requirements.txt to the current directory
+        run: cp .github/requirements.txt .
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run Python script - start new environment 
+        id: python-script
+        uses: jannekem/run-python-script-action@v1
+        with:
+          script: |
+            import requests
+            import json
+            import os
+
+            url = "https://portal.qtorque.io/api/spaces/${{ vars.SPACE_NAME }}/environments"
+
+            payload = json.dumps({
+              "sandbox_name": "${{ vars.SENDBOX_NAME }}",
+              "environment_name": "${{ vars.ENVIRONMENT_NAME}}_${{ github.run_number }}",
+              "blueprint_name": "${{ vars.BLUEPRINT_NAME }}",
+              "description": "NA",
+              "owner_email": "${{ vars.OWNER_EMAIL}}",
+              "automation": True,
+              "duration": "${{ vars.DURATION }}",
+              "source": {
+                "blueprint_name": "${{ vars.BLUEPRINT_NAME }}",
+                "repository_name": "${{ vars.REPO_NAME }}",
+                "branch": "",
+                "commit": ""
+              },
+              "visibility": "",
+              "notes": "",
+              "inputs": {
+                "name": "${{ inputs.ssm_name }}",
+                "value": "${{ inputs.ssm_value }}",
+                "aws_region": "${{ inputs.aws_region }}",
+                "agent": "${{ vars.AGENT }}",
+                "AWS_ACCESS_KEY": "${{ secrets.AWS_ACCESS_KEY }}",
+                "AWS_SECRET_KEY": "${{ secrets.AWS_SECRET_KEY }}"
+              },
+              "compute_availability": 0
+            })
+            headers = {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'Authorization': 'Bearer ${{ secrets.TORQUE_TOKEN }}'
+            }
+
+            response = requests.request("POST", url, headers=headers, data=payload)
+            
+            print(response.text)
+            
+            
+
+            
+          
+
