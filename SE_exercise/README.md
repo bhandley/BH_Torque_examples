@@ -1,5 +1,5 @@
 
-<img src="./quali_torque_logo.png" width="60%">
+<img src="./imgs//quali_torque_logo.png" width="60%">
 
 # Technical Evaluation Exercise 
 
